@@ -1,0 +1,27 @@
+﻿@model List<Model.EF.Menu>
+<div class="w3ls_logo_products_left1">
+    @{ 
+        var session = (DoAnTotNghiep2021.Common.TaiKhoanDangNhap) Session[DoAnTotNghiep2021.Common.CommonConstants.USER_SECTION];
+
+    }
+    @if ( session== null)
+    {
+        <ul class="special_items">
+            @foreach (var item in Model)
+            {
+                <li><a href="@item.Link" target="@item.Target">@item.Text</a><i>/</i></li>
+            }
+        </ul>
+    }
+    else
+    {
+            <ul class="special_items">
+                @foreach (var item in Model)
+                {
+                    <li><a href="@item.Link" target="@item.Target">@item.Text</a><i>/</i></li>
+                }
+                <li> Xin Chào : @session.TenTK</li>
+            </ul>
+    }
+
+</div>

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section container{
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/">Home</a><span>|</span></li>
+                <li>Giới thiệu</li>
+            </ul>
+        </div>
+    </div>
+}
+@section slide
+{
+    <!-- banner -->
+    <div class="banner">
+        <div class="w3l_banner_nav_left">
+            <nav class="navbar nav_bottom">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                @{Html.RenderAction("MainMenu", "Home"); }
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div class="w3l_banner_nav_right">
+            <!-- about -->
+            <div class="privacy about">
+                <h3>Giới thiệu</h3>
+                <p class="animi">
+                    <h4><b>Website giúp bán nông sản cho nông dân huyện Thanh Hà- Hải Dương</b> </h4>
+                </p>
+                <p><i>Tại Thanh Hà có trồng nhiều vải thiều, hồng xiêm, ổi, chanh. Vài thiều Thanh Hà được nhà bác học Lê Quý Đôn miêu tả: "Mã ngoài như lụa hồng tơ tía, thịt vải như thuỷ tinh, như dáng tuyết, vị ngọt đậm, ăn thấy hương thơm tưởng như thứ rượu tiên trên đời". Chanh là một trong những cây trồng truyền thống, chủ lực, mang lại hiệu quả kinh tế cao cho nông dân huyện; được trồng chuyên canh và xen canh với vài, sản phẩm chủ yếu là lá và quả. Đến nay, toàn huyện có trên 70 ha trồng chanh, tập trung chủ yếu ở các xã Thanh Xá, Thanh Xuân...</i></p>
+                <p><i>Mọi thông tin cần giúp đơn xin gửi về hòm thư email: tust319@gmail.com</i></p>
+                <p><i>hoặc sđt: 0355131257 chúng tôi sẽ giải quyết mọi thắc mắc của bạn</i></p>
+                <div class="agile_about_grids">
+                    <div class="col-md-6 agile_about_grid_left">
+                        <ol>
+                            <li><b>Sản phẩm sạch</b></li>
+                            <li><b>Chất lượng sản phẩm tốt</b></li>
+                            <li><b>Đặt uy tín lên hàng đầu</b></li>
+                            <li><b>Giao tận tay người tiêu dùng</b></li>
+                            <li><b>Nhanh - Tiện lợi</b></li>
+                        </ol>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <!-- //about -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- //banner -->
+}

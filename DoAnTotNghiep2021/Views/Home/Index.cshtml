@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listNewproduct = (List<Model.EF.Product>)ViewBag.NewNongSan;
+    var listFeatureproduct = (List<Model.EF.Product>)ViewBag.ListFeatureNongSan;
+}
+
+
+@section slide {
+    <!-- banner -->
+    <div class="banner">
+        <div class="w3l_banner_nav_left">
+            <nav class="navbar nav_bottom">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                @{Html.RenderAction("MainMenu", "Home"); }
+            </nav>
+        </div>
+        <div class="w3l_banner_nav_right">
+            <section class="slider">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <div class="w3l_banner_nav_right_banner">
+                                <h3>Cửa hàng <span>thực phẩm</span> sạch.</h3>
+                                <div class="more">
+                                    <a href="/nong-san" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="w3l_banner_nav_right_banner1">
+                                <h3>Cửa hàng <span>thực phẩm</span> sạch.</h3>
+                                <div class="more">
+                                    <a href="/nong-san" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="w3l_banner_nav_right_banner2">
+                                <h3>Giảm giá <i>20%</i></h3>
+                                <div class="more">
+                                    <a href="/nong-san" class="button--saqui button--round-l button--text-thick" data-text="Shop now">Shop now</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- flexSlider -->
+            <link rel="stylesheet" href="/Content/client/css/flexslider.css" type="text/css" media="screen" property="" />
+            <script defer src="/Content/client/js/jquery.flexslider.js"></script>
+            <script type="text/javascript">
+				$(window).load(function(){
+				  $('.flexslider').flexslider({
+                        animation: "slide",
+					start: function(slider){
+					  $('body').removeClass('loading');
+                            }
+                        });
+                    });
+            </script>
+            <!-- //flexSlider -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}
+
+<!-- banner -->
+<div class="banner_bottom">
+    <div class="wthree_banner_bottom_left_grid_sub">
+    </div>
+    <div class="wthree_banner_bottom_left_grid_sub1">
+        <div class="col-md-4 wthree_banner_bottom_left">
+            <div class="wthree_banner_bottom_left_grid">
+                <img src="/Content/client/images/4.jpg" alt=" " class="img-responsive" />
+                <div class="wthree_banner_bottom_left_grid_pos">
+                    <h4>Khuyến mãi <span>25%</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 wthree_banner_bottom_left">
+            <div class="wthree_banner_bottom_left_grid">
+                <img src="/Content/client/images/5.jpg" alt=" " class="img-responsive" />
+                <div class="wthree_banner_btm_pos">
+                    <h3>Lựa chọn <span>hợp lý</span> cho <i>bạn</i></h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 wthree_banner_bottom_left">
+            <div class="wthree_banner_bottom_left_grid">
+                <img src="/Content/client/images/6.jpg" alt=" " class="img-responsive" />
+                <div class="wthree_banner_btm_pos1">
+                    <h3>Tiết<span>kiệm</span> đến 15,000đ</h3>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<!-- top-brands -->
+<div class="top-brands">
+    <div class="container">
+        <h3>Sản phẩm mới</h3>
+        <div class="agile_top_brands_grids">
+            @foreach (var item in listNewproduct)
+            {
+                var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                <div class="col-md-3 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="tag"><img src="/Content/client/images/tag.png" alt=" " class="img-responsive"  /></div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="@url"><img title=" " alt="@item.Name" src="@item.HinhAnh" /></a>
+                                            <p>@item.Name</p>
+                                            @if (item.GiaKhuyenMai > 0)
+                                            {
+                                        <h4>@item.GiaKhuyenMai đ<span>@item.Gia đ</span> /@item.DVTinh</h4>
+                                            }
+                                            else
+                                            {
+                                        <h4>@item.Gia đ /@item.DVTinh</h4>
+                                            }
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="/them-gio-hang?productId=@item.ID&soluong=1" method="post">
+                                                <fieldset>
+                                                    <input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button" />
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //top-brands -->
+<!-- fresh-vegetables -->
+<div class="fresh-vegetables">
+    <div class="container">
+        <h3>Sản phẩm hot</h3>
+        <div class="w3l_fresh_vegetables_grids">
+            @foreach (var item in listFeatureproduct)
+            {
+                var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
+                <div class="col-md-3 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <div class="tag"><img src="/Content/client/images/tag.png" alt=" " class="img-responsive" /></div>
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="@url"><img title=" " alt="@item.Name" src="@item.HinhAnh" /></a>
+                                            <p>@item.Name</p>
+                                            @if (item.GiaKhuyenMai > 0)
+                                            {
+                                                <h4>@item.GiaKhuyenMai đ<span>@item.Gia đ</span> /@item.DVTinh</h4>
+                                            }
+                                            else
+                                            {
+                                                <h4>@item.Gia đ /@item.DVTinh</h4>
+                                            }
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            <form action="/them-gio-hang?productId=@item.ID&soluong=1" method="post">
+                                                <fieldset>
+                                                    <input type="submit" name="submit" value="Thêm vào giỏ hàng" class="button" />
+                                                </fieldset>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //fresh-vegetables -->

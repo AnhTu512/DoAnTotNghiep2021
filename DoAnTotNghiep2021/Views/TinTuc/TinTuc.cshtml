@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<Model.EF.TinTuc>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section container{
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/">Home</a><span>|</span></li>
+                <li>Tin Tức</li>
+            </ul>
+        </div>
+    </div>
+}
+@section slide
+{
+    <div class="banner">
+        <div class="w3l_banner_nav_left">
+            <nav class="navbar nav_bottom">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                @{Html.RenderAction("MainMenu", "Home"); }
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div class="w3l_banner_nav_right">
+            <div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_veg">
+                <h3 class="w3l_fruit">Danh sách tin tức</h3>
+                <div class="w3ls_w3l_banner_nav_right_grid1 w3ls_w3l_banner_nav_right_grid1_veg">
+                    
+                        <div class="col-md-6 w3ls_w3l_banner_left">
+                            <div class="hover14 column">
+                                @foreach (var item in Model)
+                                {
+                                    var link = "/chi-tiet-tin-tuc/" + item.MetaTitle + "-" + item.ID;
+                                    <div class="row">
+                                        <div style="width: 50%; float:left" class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+                                            <div class="agile_top_brand_left_grid1">
+                                                <figure>
+                                                    <div class="snipcart-item block">
+                                                        <div class="hinh-anh">
+                                                            <a href="@link"><img src="@item.HinhAnh" alt=" " class="img-responsive" min-width ="275"  /></a>
+                                                            <p>@item.Name</p>
+
+
+                                                        </div>
+                                                    </div>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                        <div style="width: 50%; float:right">
+                                            <p><b>@item.MoTa</b></p>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                }
+                            </div>
+                            </div>
+
+                    <!-- Phân trang-->
+                    <div class="clearfix"> </div>
+                    @Html.PagedListPager(Model, page => Url.Action("TinTuc", new { page }))
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}

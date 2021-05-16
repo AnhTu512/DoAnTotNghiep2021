@@ -1,0 +1,109 @@
+﻿@model List<DoAnTotNghiep2021.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section container{
+    <div class="products-breadcrumb">
+        <div class="container">
+            <ul>
+                <li><i class="fa fa-home" aria-hidden="true"></i><a href="/">Home</a><span>|</span></li>
+                <li>Giỏ hàng</li>
+            </ul>
+        </div>
+    </div>
+}
+@section slide {
+    <!-- banner -->
+    <div class="banner">
+        <div class="w3l_banner_nav_left">
+            <nav class="navbar nav_bottom">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header nav_2">
+                    <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                @{Html.RenderAction("MainMenu", "Home");
+                }<!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div class="w3l_banner_nav_right">
+            <!-- about -->
+            <div class="privacy about">
+                <h3>Giỏ <span>hàng</span></h3>
+
+                <div class="checkout-right">
+                    <table class="timetable_sub">
+                        <thead>
+                            <tr>
+                                <th>Mã SP</th>
+                                <th>Tên SP</th>
+                                <th>Ảnh SP</th>
+                                <th>Số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Product.ID</td>
+                                    <td>@item.Product.Name</td>
+                                    <td><img src="@item.Product.HinhAnh" width="100" /></td>
+                                    <td><input type="text" class="txtsoluong" data-id="@item.Product.ID" value="@item.SoLuong" /></td>
+                                    <td>@item.Product.Gia</td>
+                                    <td>@(item.Product.Gia * item.SoLuong)</td>
+                                    <td><a href="#" data-id="@item.Product.ID" class="btn-delete">Xóa</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <button id="btnContinue" class="btn">Tiếp tục mua hàng</button>
+                    <button id="btnUpdate" class="btn">Cập nhật giỏ hàng</button>
+                    <button id="btnDeleteAll" class="btn">Xóa giỏ hàng</button>
+                    <button id="btnPayment" class="btn">Thanh toán</button>
+                </div>
+            </div>
+            <!-- //about -->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- //banner -->
+}
+@section jsFooter{
+
+    <script src="/Content/client/js/controller/cartController.js"></script>
+}
+@*<table class="table">
+        <thead>
+            <tr>
+                <td>Mã SP</td>
+                <td>Tên SP</td>
+                <td>Ảnh SP</td>
+                <td>Số lượng</td>
+                <td>Đơn giá</td>
+                <td>Thành tiền</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product.ID</td>
+                    <td>@item.Product.Name</td>
+                    <td><img src="@item.Product.HinhAnh" width="100" /></td>
+                    <td><input type="text" class="soluong" value="@item.SoLuong" /></td>
+                    <td>@item.Product.Gia.GetValueOrDefault(0)</td>
+                    <td>@(item.Product.Gia.GetValueOrDefault(0) * item.SoLuong)</td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
